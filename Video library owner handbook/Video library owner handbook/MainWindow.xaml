@@ -1,0 +1,186 @@
+﻿<Window x:Class="Video_library_owner_handbook.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Video_library_owner_handbook"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="900"
+        ResizeMode="NoResize">
+    <Grid>
+
+
+
+        <TabControl Margin="0,0,0,317">
+            <TabItem Header="Посібник користувача">
+                <Grid Background="#FFE5E5E5">
+                    <Button Content="TestSave" HorizontalAlignment="Left" Margin="140,125,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+
+
+                </Grid>
+            </TabItem>
+
+
+
+
+            <TabItem Header="Видача та повернення фільмів">
+                <Grid Background="#FFE5E5E5">
+                    <TabControl>
+                        <TabItem Header="Видача">
+                            <Grid Background="#FFE5E5E5">
+                                <Label Content="Введіть ID фільму:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="getFilmID" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64"/>
+
+                                <Label Content="Оберіть дату взяття фільму:" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
+                                <Calendar x:Name="getTakeDate" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
+
+                                <Label Content="Оберіть дату повернення фільму:" HorizontalAlignment="Left" Margin="216,59,0,0" VerticalAlignment="Top"/>
+                                <Calendar x:Name="getReturnDate" HorizontalAlignment="Left" Margin="216,90,0,0" VerticalAlignment="Top"/>
+
+                                <Label Content="Введіть ID клієнта:" HorizontalAlignment="Left" Margin="216,10,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="getClientID" HorizontalAlignment="Left" Margin="216,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64"/>
+
+                                <Button Content="Видати фільм" HorizontalAlignment="Left" Margin="330,34,0,0" VerticalAlignment="Top" Width="110"/>
+
+
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Повернення">
+                            <Grid Background="#FFE5E5E5">
+                                <Label Content="Введіть ID фільму:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="returnFilmID" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64"/>
+
+                                <Label Content="Введіть ID клієнта:" HorizontalAlignment="Left" Margin="216,10,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="returnClientID" HorizontalAlignment="Left" Margin="216,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64"/>
+
+                                <Label Content="Оберіть фактичну дату повернення фільму:" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
+                                <Calendar x:Name="factReturnDate" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
+
+                                <Button Content="Повернути фільм" HorizontalAlignment="Left" Margin="330,34,0,0" VerticalAlignment="Top" Width="110"/>
+                                <Button Content="Вивести список неповернених фільмів" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" Width="219"/>
+
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+
+
+
+
+            <TabItem Header="Робота з базою фільмів">
+                <Grid Background="#FFE5E5E5">
+                    <TabControl>
+                        <TabItem Header="Виведення та додавання фільмів">
+                            <Grid Background="#FFE5E5E5" Margin="0,0,-18,0">
+                                <Label Content="Введіть дані фільму:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+
+                                <Button Content="Вивести список всіх фільмів" HorizontalAlignment="Left" Margin="195,10,0,0" VerticalAlignment="Top" Click="WriteAllFilms_Click"/>
+
+                                <Button Content="Додати фільм до відеотеки" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" />
+
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Оновлення та видалення фільмів">
+                            <Grid Background="#FFE5E5E5">
+                                <Label Content="Введіть дані фільму для оновлення:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                                <Label Content="Введіть ID фільму:" HorizontalAlignment="Left" Margin="221,8,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.89,0.267"/>
+                                <TextBox x:Name="CRUD_filmID" HorizontalAlignment="Left" Margin="334,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="39"/>
+                                <Button Content="Оновити дані" HorizontalAlignment="Left" Margin="406,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.464,-0.144" Width="100"/>
+                                <Button Content="Видалити фільм" HorizontalAlignment="Left" Margin="511,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.464,-0.144" Width="100"/>
+
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+
+                    <Label Content="" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
+
+                    <Label Content="Оберіть тип носія:" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="CRUD_isCassette"  Content="Касета" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="CRUD_isDisc" Content="Диск" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top"/>
+
+                    <Label Content="Введіть назву фільму:" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="CRUD_title" HorizontalAlignment="Left" Margin="10,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+
+                    <Label Content="Введіть назву студії:" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="CRUD_studio" HorizontalAlignment="Left" Margin="10,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+
+                    <Label Content="Оберіть жанр:" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="CRUD_genre" HorizontalAlignment="Left" Margin="10,261,0,0" VerticalAlignment="Top" Width="127">
+                        <ComboBoxItem Content="Action" />
+                        <ComboBoxItem Content="Drama" />
+                        <ComboBoxItem Content="Comedy" />
+                        <ComboBoxItem Content="Thriller" />
+                        <ComboBoxItem Content="Fantasy" />
+                        <ComboBoxItem Content="Romance" />
+                        <ComboBoxItem Content="Animation" />
+                        <ComboBoxItem Content="Documentary" />
+                    </ComboBox>
+
+                    <Label Content="Введіть рік виходу фільму:" HorizontalAlignment="Left" Margin="193,66,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="CRUD_releaseYear" HorizontalAlignment="Left" Margin="193,92,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="77"/>
+
+                    <Label Content="Введіть режисера:" HorizontalAlignment="Left" Margin="193,115,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="CRUD_director" HorizontalAlignment="Left" Margin="193,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
+
+                    <Label Content="Введіть список акторів:" HorizontalAlignment="Left" Margin="193,164,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="CRUD_actors" HorizontalAlignment="Left" Margin="193,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="93"/>
+
+                    <Label Content="Введіть короткий опис фільму:" HorizontalAlignment="Left" Margin="377,66,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="CRUD_summary" HorizontalAlignment="Left" Margin="377,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Height="89"/>
+
+
+                    <Label Content="Введіть рейтинг (від 1 до 5):" HorizontalAlignment="Left" Margin="377,186,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="CRUD_rating" HorizontalAlignment="Left" Margin="377,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89"/>
+
+                    <Label Content="Оберіть тип касети:" HorizontalAlignment="Left" Margin="588,66,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="CRUD_cassetteType"  HorizontalAlignment="Left" Margin="588,90,0,0" VerticalAlignment="Top" Width="127">
+                        <ComboBoxItem Content="VHS" />
+                        <ComboBoxItem Content="Betamax" />
+                        <ComboBoxItem Content="Video8" />
+                        <ComboBoxItem Content="Hi8" />
+                    </ComboBox>
+
+                    <Label Content="Введіть рік випуску касети:" HorizontalAlignment="Left" Margin="588,117,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="CRUD_cassetteYear" HorizontalAlignment="Left" Margin="588,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89"/>
+
+                    <Label Content="Введіть серійний номер касети:" HorizontalAlignment="Left" Margin="588,164,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="CRUD_cassetteSerialNumber" HorizontalAlignment="Left" Margin="588,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89"/>
+
+                    <Label Content="Оберіть тип диску:" HorizontalAlignment="Left" Margin="588,215,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="CRUD_discType"  HorizontalAlignment="Left" Margin="588,239,0,0" VerticalAlignment="Top" Width="127">
+                        <ComboBoxItem Content="CD" />
+                        <ComboBoxItem Content="DVD" />
+                        <ComboBoxItem Content="BlueRay" />
+                        <ComboBoxItem Content="VCD" />
+                    </ComboBox>
+                </Grid>
+            </TabItem>
+
+
+
+
+            <TabItem Header="Пошук, сортування та фільтри">
+                <Grid Background="#FFE5E5E5">
+
+                </Grid>
+            </TabItem>
+
+
+
+
+            <TabItem Header="Додатковий функціонал">
+                <Grid Background="#FFE5E5E5">
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,367,0,0">
+            <TextBlock x:Name="outputTextBlock" TextWrapping="Wrap" Margin="10, 0"><Run Text="тут "/><Run Language="uk-ua" Text="буде вивід хуйні"/></TextBlock>
+        </ScrollViewer>
+
+
+    </Grid>
+</Window>

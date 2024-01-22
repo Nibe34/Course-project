@@ -1,0 +1,30 @@
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\bin\Debug\Video library owner handbook.exe.config
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\bin\Debug\Video library owner handbook.exe
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\bin\Debug\Video library owner handbook.pdb
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook.csproj.AssemblyReference.cache
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\obj\Debug\MainWindow.g.cs
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\obj\Debug\App.g.cs
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook_MarkupCompile.cache
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook_MarkupCompile.lref
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\obj\Debug\MainWindow.baml
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook.g.resources
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\obj\Debug\Video_library_owner_handbook.Properties.Resources.resources
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook.csproj.GenerateResource.cache
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook.csproj.CoreCompileInputs.cache
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook.exe
+C:\Users\den27\OneDrive\Робочий стіл\курсовий проект\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook.pdb
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\bin\Debug\Video library owner handbook.exe.config
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\bin\Debug\Video library owner handbook.exe
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\bin\Debug\Video library owner handbook.pdb
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook.csproj.AssemblyReference.cache
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\MainWindow.g.cs
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\App.g.cs
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook_MarkupCompile.cache
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook_MarkupCompile.lref
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\MainWindow.baml
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook.g.resources
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\Video_library_owner_handbook.Properties.Resources.resources
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook.csproj.GenerateResource.cache
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook.csproj.CoreCompileInputs.cache
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook.exe
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\Video library owner handbook.pdb
