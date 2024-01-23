@@ -115,7 +115,7 @@ namespace Video_library_owner_handbook
                     }
 
                     VideoFilmOnCassette videoFilmOnCassette = new VideoFilmOnCassette(
-                        VideoFilmLibrary.FindMinUnusedId(),
+                        VideoFilmLibrary.FindMinUnusedFilmID(),
                         true,
                         CRUD_title.Text,
                         CRUD_studio.Text,
@@ -153,7 +153,7 @@ namespace Video_library_owner_handbook
                     }
 
                     VideoFilmOnDisc videoFilmOnDisc = new VideoFilmOnDisc(
-                        VideoFilmLibrary.FindMinUnusedId(),
+                        VideoFilmLibrary.FindMinUnusedFilmID(),
                         true,
                         CRUD_title.Text,
                         CRUD_studio.Text,
@@ -320,12 +320,179 @@ namespace Video_library_owner_handbook
 
         private void Filter_Click(object sender, RoutedEventArgs e)
         {
+            if (mediaTypeFilter.SelectedIndex == 0 &&
+               discTypeFilter.SelectedIndex == 0 &&
+                cassetteTypeFilter.SelectedIndex == 0 &&
+                genreFilter.SelectedIndex == 0 &&
+                string.IsNullOrWhiteSpace(yearFilter.Text))
+            {
+                MessageBox.Show("Oберіть принаймні один фільтр.", "Помилка");
+                return;
+            }
+
+
+            List<VideoFilm> filteredFilms = VideoFilmLibrary.GetVideoFilms();
+
+            if (!string.IsNullOrEmpty(yearFilter.Text))
+            {
+                if (int.TryParse(mediaTypeFilter.Text, out int value))
+                {
+                    MessageBox.Show("Поле \"рік\" може містити лише цілі числа.", "Помилка");
+                    return;
+                }
+
+                filteredFilms = filteredFilms
+                    .Where(film => film.ReleaseYear == int.Parse(yearFilter.Text))
+                    .ToList();
+            }
+
+
+            if (genreFilter.SelectedIndex != 0)
+            {
+                filteredFilms = filteredFilms
+                    .Where(film => film.Genre == (Genres)Enum.Parse(typeof(Genres), ((ComboBoxItem)genreFilter.SelectedItem).Content.ToString()))
+                    .ToList();
+            }
+
+            if (mediaTypeFilter.SelectedIndex == 1)
+            {
+                List<VideoFilmOnCassette> cassetteVideoFilms = filteredFilms
+                    .OfType<VideoFilmOnCassette>()
+                    .ToList();
+
+                if (cassetteTypeFilter.SelectedIndex != 0)
+                {
+                    cassetteVideoFilms = cassetteVideoFilms
+                        .Where(film => film.CassetteType == (CassetteTypes)Enum.Parse(typeof(CassetteTypes), ((ComboBoxItem)cassetteTypeFilter.SelectedItem).Content.ToString()))
+                        .ToList();
+                }
+
+                foreach (var videoFilm in cassetteVideoFilms)
+                {
+                    PrintMessage(videoFilm.ToStringForWrite());
+                }
+                return;
+            }
+
+            if (mediaTypeFilter.SelectedIndex == 2)
+            {
+                List<VideoFilmOnDisc> discVideoFilms = filteredFilms
+                    .OfType<VideoFilmOnDisc>()
+                    .ToList();
+
+                if (discTypeFilter.SelectedIndex != 0)
+                {
+                    discVideoFilms = discVideoFilms
+                        .Where(film => film.DiscType == (DiscTypes)Enum.Parse(typeof(DiscTypes), ((ComboBoxItem)discTypeFilter.SelectedItem).Content.ToString()))
+                        .ToList();
+                }
+
+                foreach (var videoFilm in discVideoFilms)
+                {
+                    PrintMessage(videoFilm.ToStringForWrite());
+                }
+                return;
+            }
+
+
+            foreach (var videoFilm in filteredFilms)
+            {
+                if (videoFilm is VideoFilmOnCassette videoFilmOnCassette)
+                {
+                    PrintMessage(videoFilmOnCassette.ToStringForWrite());
+                }
+                else if (videoFilm is VideoFilmOnDisc videoFilmOnDisc)
+                {
+                    PrintMessage(videoFilmOnDisc.ToStringForWrite());
+                }
+            }
+
 
         }
 
         private void Sort_Click(object sender, RoutedEventArgs e)
         {
+            if (sortType.SelectedIndex == 0)
+            {
+                MessageBox.Show("Oберіть тип сортування.", "Помилка");
+                return;
+            }
 
+            List<VideoFilm> sortedVideoFilms = new List<VideoFilm>();
+
+            if (sortCriterion.SelectedIndex == 0)
+            {
+                sortedVideoFilms = sortType.SelectedIndex == 1
+                    ? VideoFilmLibrary.GetVideoFilms().OrderBy(film => film.Id).ToList()
+                    : VideoFilmLibrary.GetVideoFilms().OrderByDescending(film => film.Id).ToList();
+            }
+            else if (sortCriterion.SelectedIndex == 1)
+            {
+                sortedVideoFilms = sortType.SelectedIndex == 1
+                    ? VideoFilmLibrary.GetVideoFilms().OrderBy(film => film.Title).ToList()
+                    : VideoFilmLibrary.GetVideoFilms().OrderByDescending(film => film.Title).ToList();
+            }
+            else if (sortCriterion.SelectedIndex == 2)
+            {
+                sortedVideoFilms = sortType.SelectedIndex == 1
+                    ? VideoFilmLibrary.GetVideoFilms().OrderBy(film => film.ReleaseYear).ToList()
+                    : VideoFilmLibrary.GetVideoFilms().OrderByDescending(film => film.ReleaseYear).ToList();
+            }
+            else if (sortCriterion.SelectedIndex == 3)
+            {
+                sortedVideoFilms = sortType.SelectedIndex == 1
+                    ? VideoFilmLibrary.GetVideoFilms().OrderBy(film => film.Rating).ToList()
+                    : VideoFilmLibrary.GetVideoFilms().OrderByDescending(film => film.Rating).ToList();
+            }
+
+
+            foreach (var videoFilm in sortedVideoFilms)
+            {
+                if (videoFilm is VideoFilmOnCassette videoFilmOnCassette)
+                {
+                    PrintMessage(videoFilmOnCassette.ToStringForWrite());
+                }
+                else if (videoFilm is VideoFilmOnDisc videoFilmOnDisc)
+                {
+                    PrintMessage(videoFilmOnDisc.ToStringForWrite());
+                }
+            }
+
+        }
+
+        private void PrintAllClients_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var client in VideoFilmLibrary.GetUserCards())
+            {
+                PrintMessage(client.ToStringForWrite());
+            }
+        }
+
+        private void AddNewClient_Click(object sender, RoutedEventArgs e)
+        {
+            VideoFilmLibrary.AddUserCard(new UserCard(VideoFilmLibrary.FindMinUnusedUserID(), addClientName.Text));
+            PrintMessage("Клієнта успішно додано.");
+        }
+
+        private void DeleteClient_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int userId;
+                if (!int.TryParse(CRUD_filmID.Text, out userId))
+                {
+                    MessageBox.Show("Некоректний формат введеного ідентифікатора фільму.", "Помилка");
+                    return;
+                }
+
+                string removalResult = VideoFilmLibrary.RemoveUserCardById(userId);
+
+                PrintMessage(removalResult);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Сталася помилка: {ex.Message}", "Помилка");
+            }
         }
     }
 }

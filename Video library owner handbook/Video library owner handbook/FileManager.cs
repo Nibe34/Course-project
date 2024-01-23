@@ -31,6 +31,9 @@ namespace Video_library_owner_handbook
         }
 
 
+
+
+
         public static void ReadFilmsFromFile()
         {
             string[] lines = File.ReadAllLines("FilmsOnCassette.txt");
@@ -75,5 +78,30 @@ namespace Video_library_owner_handbook
                 VideoFilmLibrary.AddFilm(film);
             }
         }
+
+
+
+
+
+        public static void WriteUserCardsToFile()
+        {
+
+        }
+
+
+
+
+        /*
+        public static void ReadUserCardsFromFile()
+        {
+            string[] lines = File.ReadAllLines("UserCards.txt");
+
+            foreach (string line in lines)
+            {
+                string[] elements = line.Split('~');
+
+                UserCard userCard = new UserCard(elements[0], elements[1])
+            }
+        }*/
     }
 }

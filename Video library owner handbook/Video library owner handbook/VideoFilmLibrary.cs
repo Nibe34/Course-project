@@ -32,6 +32,11 @@ namespace Video_library_owner_handbook
             return videoFilms;
         }
 
+        public static List<UserCard> GetUserCards()
+        {
+            return userCards;
+        }
+
         public static void AddFilm(VideoFilm videoFilm)
         {
             VideoFilmLibrary.videoFilms.Add(videoFilm);
@@ -41,10 +46,33 @@ namespace Video_library_owner_handbook
             VideoFilmLibrary.videoFilms.AddRange(list);
         }
 
-        
-        public static int FindMinUnusedId()
+        public static void AddUserCard(UserCard userCard)
         {
-            if (VideoFilmLibrary.videoFilms.Count == 0)
+            userCards.Add(userCard);
+        }
+
+
+        public static int FindMinUnusedUserID()
+        {
+            if (VideoFilmLibrary.userCards.Count == 0)
+                return 1;
+
+            List<int> sortedIds = VideoFilmLibrary.userCards
+                .OrderBy(obj => obj.Id)
+                .Select(obj => obj.Id)
+                .ToList();
+
+            for (int i = 1; i < sortedIds.Max(); i++)
+                if (!sortedIds.Contains(i))
+                    return i;
+
+            return sortedIds.Max() + 1;
+        }
+
+        
+        public static int FindMinUnusedFilmID()
+        {
+            if (VideoFilmLibrary.videoFilms.Count == 0) 
                 return 1;
 
             List<int> sortedIds = VideoFilmLibrary.videoFilms
@@ -52,8 +80,8 @@ namespace Video_library_owner_handbook
                 .Select(obj => obj.Id)
                 .ToList();
 
-            for (int i = 1;  i < sortedIds.Max(); i++)
-                if (!sortedIds.Contains(i))
+            for (int i = 1;  i < sortedIds.Max(); i++) 
+                if (!sortedIds.Contains(i)) 
                     return i;
 
             return sortedIds.Max() + 1;
@@ -76,7 +104,20 @@ namespace Video_library_owner_handbook
         }
 
 
-        
+        public static string RemoveUserCardById(int userId)
+        {
+            UserCard userCardToRemove = userCards.FirstOrDefault(user => user.Id == userId);
+
+            if (userCardToRemove != null)
+            {
+                userCards.Remove(userCardToRemove);
+                return ($"Користувач з ідентифікатором {userId} був успішно видалений.\n\n");
+            }
+            else
+            {
+                return ($"Ідентифікатор {userId} не знайдено в бібліотеці.\n\n");
+            }
+        }
 
 
 

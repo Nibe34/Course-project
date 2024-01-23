@@ -61,6 +61,21 @@
 
                             </Grid>
                         </TabItem>
+                        <TabItem Header="Робота з базою клієнтів">
+                            <Grid Background="#FFE5E5E5">
+                                <Button Content="Вивести всіх клієнтів" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Click="PrintAllClients_Click"/>
+
+                                <Button Content="Додати клієнта" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Width="140" Click="AddNewClient_Click"/>
+                                <Label Content="Введіть ім'я клієнта для додавання:" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="addClientName" HorizontalAlignment="Left" Margin="10,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+
+                                <Button Content="Видалити клієнта" HorizontalAlignment="Left" Margin="242,76,0,0" VerticalAlignment="Top" Width="140" Click="DeleteClient_Click"/>
+                                <Label Content="Введіть ID клієнта для видалення:" HorizontalAlignment="Left" Margin="242,101,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="deleteClientID" HorizontalAlignment="Left" Margin="242,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+
+
+                            </Grid>
+                        </TabItem>
                     </TabControl>
                 </Grid>
             </TabItem>
@@ -166,14 +181,14 @@
                     <TextBox x:Name="searchField" HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189"/>
                     <Button Content="Шукати" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="94" Click="Search_Click"/>
 
-                    
+
                     <Label Content="Фільтри:" HorizontalAlignment="Left" Margin="295,10,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="mediaTypeFilter" HorizontalAlignment="Left" Margin="295,41,0,0" VerticalAlignment="Top" Width="120">
                         <ComboBoxItem Content="Тип носія" />
                         <ComboBoxItem Content="Касета" />
                         <ComboBoxItem Content="Диск" />
                     </ComboBox>
-                    <ComboBox x:Name="genreFilter" HorizontalAlignment="Left" Margin="295,68,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBox x:Name="genreFilter" HorizontalAlignment="Left" Margin="295,122,0,0" VerticalAlignment="Top" Width="120">
                         <ComboBoxItem Content="Жанр" />
                         <ComboBoxItem Content="Action" />
                         <ComboBoxItem Content="Drama" />
@@ -184,14 +199,14 @@
                         <ComboBoxItem Content="Animation" />
                         <ComboBoxItem Content="Documentary" />
                     </ComboBox>
-                    <ComboBox x:Name="cassetteTypeFilter" HorizontalAlignment="Left" Margin="295,95,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBox x:Name="cassetteTypeFilter" HorizontalAlignment="Left" Margin="295,68,0,0" VerticalAlignment="Top" Width="120">
                         <ComboBoxItem Content="Тип касети" />
                         <ComboBoxItem Content="VHS" />
                         <ComboBoxItem Content="Betamax" />
                         <ComboBoxItem Content="Video8" />
                         <ComboBoxItem Content="Hi8" />
                     </ComboBox>
-                    <ComboBox x:Name="discTypeFilter" HorizontalAlignment="Left" Margin="295,122,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBox x:Name="discTypeFilter" HorizontalAlignment="Left" Margin="295,95,0,0" VerticalAlignment="Top" Width="120">
                         <ComboBoxItem Content="Тип диску" />
                         <ComboBoxItem Content="CD" />
                         <ComboBoxItem Content="DVD" />
@@ -199,9 +214,9 @@
                         <ComboBoxItem Content="VCD" />
                     </ComboBox>
                     <Label Content="Рік виходу:" HorizontalAlignment="Left" Margin="295,149,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="295,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="yearFilter" HorizontalAlignment="Left" Margin="295,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <Button Content="Фільтрувати" HorizontalAlignment="Left" Margin="295,198,0,0" VerticalAlignment="Top" Width="94" Click="Filter_Click"/>
-                    
+
 
                     <Label Content="Сортування:" HorizontalAlignment="Left" Margin="561,10,0,0" VerticalAlignment="Top"/>
                     <Label Content="Фільтри:" HorizontalAlignment="Left" Margin="295,10,0,0" VerticalAlignment="Top"/>

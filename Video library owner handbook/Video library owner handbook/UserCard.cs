@@ -6,20 +6,37 @@ using System.Threading.Tasks;
 
 namespace Video_library_owner_handbook
 {
-    internal class UserCard
+    internal class UserCard : IStringConvertible
     {
-        private uint id { get; set; }
-        private string userName { get; set; }
+        private int id;
+        private string userName;
         private List<Record> records { get; set; }
 
 
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+        public string UserName
+        {
+            get { return userName; }
+            set { userName = value; }
+        }
 
 
-        public UserCard(uint id, string userName)
+
+
+        public UserCard(int id, string userName)
         {
             this.id = id;
             this.userName = userName;
-            records = new List<Record>();
+        }
+
+        public void AddRecordToUserCard(Record record)
+        {
+            records.Add(record);
         }
 
 
@@ -31,7 +48,17 @@ namespace Video_library_owner_handbook
 
 
 
+        public string ToStringForFile()
+        {
+            return "";
+        }
 
+        public string ToStringForWrite()
+        {
+            return
+                $"ID: {this.id}\n" +
+                $"Ім'я клієнта: {this.userName}\n";
+        }
 
 
 
