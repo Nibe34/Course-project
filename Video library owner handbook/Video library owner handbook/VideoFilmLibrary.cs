@@ -41,22 +41,46 @@ namespace Video_library_owner_handbook
             VideoFilmLibrary.videoFilms.AddRange(list);
         }
 
-        /*
-        public void ReadFilms(string filePath)
+        
+        public static int FindMinUnusedId()
         {
-            string[] lines = File.ReadAllLines(filePath);
+            if (VideoFilmLibrary.videoFilms.Count == 0)
+                return 1;
 
-            foreach (string line in lines)
+            List<int> sortedIds = VideoFilmLibrary.videoFilms
+                .OrderBy(obj => obj.Id)
+                .Select(obj => obj.Id)
+                .ToList();
+
+            for (int i = 1;  i < sortedIds.Max(); i++)
+                if (!sortedIds.Contains(i))
+                    return i;
+
+            return sortedIds.Max() + 1;
+        }
+
+
+        public static string RemoveFilmById(int filmId)
+        {
+            VideoFilm filmToRemove = videoFilms.FirstOrDefault(film => film.Id == filmId);
+
+            if (filmToRemove != null)
             {
-                string[] elements = line.Split('~');
-
-                VideoFilmOnCassette film = new VideoFilmOnCassette(int.Parse(elements[0]), bool.Parse(elements[1]),
-                    elements[2], elements[3], elements[4], int.Parse(elements[5]), elements[6], elements[7],
-                    elements[8], double.Parse(elements[9]), elements[10], int.Parse(elements[11]), int.Parse(elements[12]));
-                videoFilms.Add(film);
+                videoFilms.Remove(filmToRemove);
+                return ($"Фільм з ідентифікатором {filmId} був успішно видалений.\n\n");
             }
+            else
+            {
+                return ($"Ідентифікатор {filmId} не знайдено в бібліотеці.\n\n");
+            }
+        }
 
-        }*/
+
+        
+
+
+
+
 
     }
 }

@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Debug\
+C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\obj\Release\
 Video_library_owner_handbook
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library owner handbook\Video library owner handbook\App.xaml
 1219584333
 
@@ -16,5 +16,5 @@ C:\Users\den27\OneDrive\Документи\GitHub\Course-project\Video library o
 13-1310406943
 MainWindow.xaml;
 
-False
+True
 

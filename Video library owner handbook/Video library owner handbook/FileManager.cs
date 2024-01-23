@@ -10,7 +10,7 @@ namespace Video_library_owner_handbook
 {
     internal class FileManager
     {
-        public static void WriteFilms()
+        public static void WriteFilmsToFile()
         {
             File.WriteAllText("FilmsOnCassette.txt", string.Empty);
             File.WriteAllText("FilmsOnDisc.txt", string.Empty);
@@ -31,7 +31,7 @@ namespace Video_library_owner_handbook
         }
 
 
-        public static void ReadFilms()
+        public static void ReadFilmsFromFile()
         {
             string[] lines = File.ReadAllLines("FilmsOnCassette.txt");
 

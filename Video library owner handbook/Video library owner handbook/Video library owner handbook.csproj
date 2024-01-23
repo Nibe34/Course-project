@@ -57,7 +57,6 @@
     </ApplicationDefinition>
     <Compile Include="FileManager.cs" />
     <Compile Include="IStringConvertible.cs" />
-    <Compile Include="IValidate.cs" />
     <Compile Include="Record.cs" />
     <Compile Include="UserCard.cs" />
     <Compile Include="VideoFilm.cs" />

@@ -8,55 +8,76 @@ namespace Video_library_owner_handbook
 {
     internal abstract class VideoFilm
     {
-        protected int id {  get; set; }
-        protected bool inVideoLibrary { get; set; }
-        protected string title { get; set; }
-        protected string studio { get; set; }
-        protected Genres genre { get; set; }
+        protected int id;
+        protected bool inVideoLibrary;
+        protected string title;
+        protected string studio;
+        protected Genres genre;
         protected int releaseYear;
-        protected string director { get; set; }
-        protected string actors { get; set; }
-        protected string summary { get; set; }
+        protected string director;
+        protected string actors;
+        protected string summary;
         protected double rating;
 
 
-        public int ReleaseYear
+        public int Id
         {
-            get
-            {
-                return releaseYear;
-            }
-            set
-            {
-                if (value >= 1900 && value <= DateTime.Now.Year)
-                {
-                    releaseYear = value;
-                }
-                else
-                {
-                    returnMessage("Недопустимий рік. Введіть значення від 1900 до поточного року.");
-                }
-            }
+            get { return id; }
+            set { id = value; }
         }
 
+        public bool InVideoLibrary
+        {
+            get { return inVideoLibrary; }
+            set { inVideoLibrary = value; }
+        }
+
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+
+        public string Studio
+        {
+            get { return studio; }
+            set { studio = value; }
+        }
+
+        public Genres Genre
+        {
+            get { return genre; }
+            set { genre = value; }
+        }
+
+        public int ReleaseYear
+        {
+            get { return releaseYear; }
+            set { releaseYear = value; }
+        }
+
+        public string Director
+        {
+            get { return director; }
+            set { director = value; }
+        }
+
+        public string Actors
+        {
+            get { return actors; }
+            set { actors = value; }
+        }
+
+        public string Summary
+        {
+            get { return summary; }
+            set { summary = value; }
+        }
 
         public double Rating
         {
-            get
-            {
-                return rating;
-            }
-            set
-            {
-                if (value >= 1 && value <= 5)
-                {
-                    rating = Math.Round(value, 2);
-                }
-                else
-                {
-                    returnMessage("Значення рейтингу повинне знаходитись в діапазоні від 1 до 5.");
-                }
-            }
+            get { return rating; }
+            set { rating = value; }
         }
 
 
@@ -107,7 +128,7 @@ namespace Video_library_owner_handbook
 
 
 
-        
+
 
 
 

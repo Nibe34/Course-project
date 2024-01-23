@@ -8,7 +8,14 @@ namespace Video_library_owner_handbook
 {
     internal class VideoFilmOnDisc : VideoFilm, IStringConvertible
     {
-        private DiscTypes discType {  get; set; }
+        private DiscTypes discType;
+
+
+        public DiscTypes DiscType
+        {
+            get { return discType; }
+            set { discType = value; }
+        }
 
 
         public VideoFilmOnDisc(int id, bool inVideoLibrary, string title, string studio, string genreString, int releaseYear,

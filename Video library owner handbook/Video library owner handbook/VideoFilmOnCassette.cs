@@ -8,9 +8,28 @@ namespace Video_library_owner_handbook
 {
     internal class VideoFilmOnCassette : VideoFilm, IStringConvertible
     {
-        private CassetteTypes cassetteType { get; set; }
-        private int cassetteSeriesReleaseYear { get; set; }
-        private int cassetteNumberInSeries { get; set; }
+        private CassetteTypes cassetteType;
+        private int cassetteSeriesReleaseYear;
+        private int cassetteNumberInSeries;
+
+
+        public CassetteTypes CassetteType
+        {
+            get { return cassetteType; }
+            set { cassetteType = value; }
+        }
+
+        public int CassetteSeriesReleaseYear
+        {
+            get { return cassetteSeriesReleaseYear; }
+            set { cassetteSeriesReleaseYear = value; }
+        }
+
+        public int CassetteNumberInSeries
+        {
+            get { return cassetteNumberInSeries; }
+            set { cassetteNumberInSeries = value; }
+        }
 
 
 
