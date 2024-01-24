@@ -85,13 +85,18 @@ namespace Video_library_owner_handbook
 
         public static void WriteUserCardsToFile()
         {
+            File.WriteAllText("UserCards.txt", string.Empty);
 
+            foreach (var userCard in VideoFilmLibrary.GetUserCards())
+            {
+                File.AppendAllText("UserCards.txt", userCard.ToStringForFile() + Environment.NewLine);
+            }
         }
 
 
 
 
-        /*
+        
         public static void ReadUserCardsFromFile()
         {
             string[] lines = File.ReadAllLines("UserCards.txt");
@@ -100,8 +105,20 @@ namespace Video_library_owner_handbook
             {
                 string[] elements = line.Split('~');
 
-                UserCard userCard = new UserCard(elements[0], elements[1])
+                UserCard userCard = new UserCard(int.Parse(elements[0]), elements[1]);
+
+                if (elements.Length > 2)
+                    for (int i = 2; i < elements.Length; i += 5)
+                    {
+                        userCard.AddRecordToUserCard(new Record(int.Parse(elements[i]),
+                                                                int.Parse(elements[i + 1]),
+                                                                DateTime.Parse(elements[i + 2]),
+                                                                DateTime.Parse(elements[i + 3]),
+                                                                bool.Parse(elements[i + 4])));
+                    }
+
+                VideoFilmLibrary.AddUserCard(userCard);
             }
-        }*/
+        }
     }
 }

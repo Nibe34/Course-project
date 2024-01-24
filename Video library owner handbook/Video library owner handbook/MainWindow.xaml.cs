@@ -32,22 +32,23 @@ namespace Video_library_owner_handbook
             sortCriterion.SelectedIndex = 0;
 
             FileManager.ReadFilmsFromFile();
+            FileManager.ReadUserCardsFromFile();
 
-            //Closing += MainWindow_Closing;
+            Closing += MainWindow_Closing;
 
 
 
         }
 
-        /*
+        
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MessageBox.Show("Всі зміни будуть збережені.", "Збереження змін", MessageBoxButton.OK);
 
-            // Викликати метод для збереження змін або виконання іншої логіки
-            
+            FileManager.WriteFilmsToFile();
+            FileManager.WriteUserCardsToFile();
         }
-         */
+         
 
 
 
@@ -479,15 +480,168 @@ namespace Video_library_owner_handbook
             try
             {
                 int userId;
-                if (!int.TryParse(CRUD_filmID.Text, out userId))
+                if (!int.TryParse(deleteClientID.Text, out userId))
                 {
-                    MessageBox.Show("Некоректний формат введеного ідентифікатора фільму.", "Помилка");
+                    MessageBox.Show("Некоректний формат введеного ідентифікатора клієнта.", "Помилка");
                     return;
                 }
 
                 string removalResult = VideoFilmLibrary.RemoveUserCardById(userId);
 
                 PrintMessage(removalResult);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Сталася помилка: {ex.Message}", "Помилка");
+            }
+        }
+
+        private void GiveFilm_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int filmId = int.Parse(getFilmID.Text);
+                DateTime takingDate = getTakeDate.SelectedDate ?? DateTime.Now;
+                DateTime returnDate = getReturnDate.SelectedDate ?? DateTime.Now;
+                int clientId = int.Parse(getClientID.Text);
+
+                VideoFilm film = VideoFilmLibrary.GetFilmById(filmId);
+                if (film == null)
+                {
+                    MessageBox.Show($"Фільм із ID {filmId} не знайдено.", "Помилка");
+                    return;
+                }
+
+                if (!film.InVideoLibrary)
+                {
+                    MessageBox.Show($"Фільм із ID {filmId} вже виданий.", "Помилка");
+                    return;
+                }
+
+                if (returnDate < takingDate)
+                {
+                    MessageBox.Show("Дата повернення повинна бути пізніше за дату взяття.", "Помилка");
+                    return;
+                }
+
+                UserCard client = VideoFilmLibrary.GetUserCardById(clientId);
+                if (client == null)
+                {
+                    MessageBox.Show($"Картка користувача із ID {clientId} не знайдена.", "Помилка");
+                    return;
+                }
+
+                int recordId = client.FindMinUnusedRecordID();
+
+                Record record = new Record(recordId, filmId, takingDate, returnDate, false);
+                client.AddRecordToUserCard(record);
+
+                VideoFilmLibrary.GetFilmById(filmId).InVideoLibrary = false;
+
+                PrintMessage($"Фільм був виданий користувачу {client.UserName}. ID запису: {recordId}");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Некоректний формат введених даних.", "Помилка");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Сталася помилка: {ex.Message}", "Помилка");
+            }
+        }
+
+        private void ReturnFilm_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int filmId = int.Parse(returnFilmID.Text);
+                int clientId = int.Parse(returnClientID.Text);
+                DateTime date = factReturnDate.SelectedDate ?? DateTime.Now;
+
+                VideoFilm film = VideoFilmLibrary.GetFilmById(filmId);
+                if (film == null)
+                {
+                    MessageBox.Show($"Фільм із ID {filmId} не знайдено.", "Помилка");
+                    return;
+                }
+
+                UserCard client = VideoFilmLibrary.GetUserCardById(clientId);
+                if (client == null)
+                {
+                    MessageBox.Show($"Картка користувача із ID {clientId} не знайдена.", "Помилка");
+                    return;
+                }
+
+                Record recordToReturn = client.Records.FirstOrDefault(record =>
+                    record.VideoFilmId == filmId && !record.WasReturned);
+
+                if (recordToReturn == null)
+                {
+                    MessageBox.Show($"Користувач із ID {clientId} не має не поверненого фільму із ID {filmId}.", "Помилка");
+                    return;
+                }
+
+                if (date > DateTime.Now)
+                {
+                    MessageBox.Show("Фактична дата повернення не може бути в майбутньому.", "Помилка");
+                    return;
+                }
+
+                if (date > recordToReturn.ReturningDate)
+                {
+                    MessageBox.Show("Фактична дата повернення пізніше запланованої. Введіть санкції стосовно клієнта.", "Попередження");
+                }
+
+                film.InVideoLibrary = true;
+                recordToReturn.WasReturned = true;
+                PrintMessage($"Фільм був успішно повернений. ID фільму: {filmId}, ID користувача: {clientId}");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Некоректний формат введених даних.", "Помилка");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Сталася помилка: {ex.Message}", "Помилка");
+            }
+        }
+
+        private void GetUnreturnedFilmsByUserId(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int clientId = int.Parse(returnClientID.Text);
+
+                UserCard client = VideoFilmLibrary.GetUserCardById(clientId);
+                if (client == null)
+                {
+                    MessageBox.Show($"Картка користувача із ID {clientId} не знайдена.", "Помилка");
+                    return;
+                }
+
+                List<Record> unreturnedRecords = client
+                    .Records.Where(record => !record.WasReturned)
+                    .ToList();
+
+
+                if (unreturnedRecords.Count == 0)
+                {
+                    MessageBox.Show($"У користувача із ID {clientId} немає неповернених фільмів.", "Повідомлення");
+                }
+                else
+                {
+                    PrintMessage($"Неповернені фільми користувача із ID {clientId}:");
+
+                    foreach (Record record in unreturnedRecords)
+                    {
+                        VideoFilm film = VideoFilmLibrary.GetFilmById(record.VideoFilmId);
+                        PrintMessage($"- ID фільму: {film.Id}, Назва: {film.Title}, Дата взяття: {record.TakingDate.ToShortDateString()}");
+                    }
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Некоректний формат введених даних.", "Помилка");
             }
             catch (Exception ex)
             {

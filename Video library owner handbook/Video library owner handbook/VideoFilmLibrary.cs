@@ -120,6 +120,19 @@ namespace Video_library_owner_handbook
         }
 
 
+        public static VideoFilm GetFilmById(int filmId)
+        {
+            return videoFilms.FirstOrDefault(film => film.Id == filmId);
+        }
+
+
+        public static UserCard GetUserCardById(int userId)
+        {
+            return userCards.FirstOrDefault(userCard => userCard.Id == userId);
+        }
+
+
+
 
 
 

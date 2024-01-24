@@ -25,6 +25,11 @@ namespace Video_library_owner_handbook
             set { userName = value; }
         }
 
+        public List<Record> Records
+        {
+            get { return records; }
+            set { records = value; }
+        }
 
 
 
@@ -32,7 +37,29 @@ namespace Video_library_owner_handbook
         {
             this.id = id;
             this.userName = userName;
+            this.records = new List<Record>();
         }
+
+
+        public int FindMinUnusedRecordID()
+        {
+            if (records.Count == 0)
+                return 1;
+
+            List<int> sortedIds = records
+                .OrderBy(obj => obj.RecordId)
+                .Select(obj => obj.RecordId)
+                .ToList();
+
+            for (int i = 1; i < sortedIds.Max(); i++)
+                if (!sortedIds.Contains(i))
+                    return i;
+
+            return sortedIds.Max() + 1;
+        }
+
+
+
 
         public void AddRecordToUserCard(Record record)
         {
@@ -50,7 +77,15 @@ namespace Video_library_owner_handbook
 
         public string ToStringForFile()
         {
-            return "";
+            string result = $"{this.id}~" +
+                            $"{this.userName}";
+
+            foreach (Record record in records)
+            {
+                result += record.ToStringForFile();
+            }
+
+            return result;
         }
 
         public string ToStringForWrite()

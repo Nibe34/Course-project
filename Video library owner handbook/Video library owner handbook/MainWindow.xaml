@@ -40,7 +40,7 @@
                                 <Label Content="Введіть ID клієнта:" HorizontalAlignment="Left" Margin="216,10,0,0" VerticalAlignment="Top"/>
                                 <TextBox x:Name="getClientID" HorizontalAlignment="Left" Margin="216,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64"/>
 
-                                <Button Content="Видати фільм" HorizontalAlignment="Left" Margin="330,34,0,0" VerticalAlignment="Top" Width="110"/>
+                                <Button Content="Видати фільм" HorizontalAlignment="Left" Margin="330,34,0,0" VerticalAlignment="Top" Width="110" Click="GiveFilm_Click"/>
 
 
                             </Grid>
@@ -56,8 +56,8 @@
                                 <Label Content="Оберіть фактичну дату повернення фільму:" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
                                 <Calendar x:Name="factReturnDate" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
 
-                                <Button Content="Повернути фільм" HorizontalAlignment="Left" Margin="330,34,0,0" VerticalAlignment="Top" Width="110"/>
-                                <Button Content="Вивести список неповернених фільмів" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" Width="219"/>
+                                <Button Content="Повернути фільм" HorizontalAlignment="Left" Margin="330,34,0,0" VerticalAlignment="Top" Width="110" Click="ReturnFilm_Click"/>
+                                <Button Content="Вивести список неповернених фільмів" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" Width="219" Click="GetUnreturnedFilmsByUserId"/>
 
                             </Grid>
                         </TabItem>
