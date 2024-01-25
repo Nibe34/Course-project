@@ -14,9 +14,20 @@
         <TabControl Margin="0,0,0,317">
             <TabItem Header="Посібник користувача">
                 <Grid Background="#FFE5E5E5">
-                    <Button Content="TestSave" HorizontalAlignment="Left" Margin="140,125,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-
-
+                    <Button Click="Help_GiveFilm_Click" Content="Видача фільмів" HorizontalAlignment="Left" Margin="165,10,0,0" VerticalAlignment="Top" Width="133"/>
+                    <Button Click="Help_ReturnFilm_Click" Content="Повернення фільмів" HorizontalAlignment="Left" Margin="165,35,0,0" VerticalAlignment="Top" Width="133"/>
+                    <Button Click="Help_ClientBase_Click" Content="База клієнтів" HorizontalAlignment="Left" Margin="165,60,0,0" VerticalAlignment="Top" Width="133"/>
+                    <Button Click="Help_FilmsList_Click" Content="Перегляд списку фільмів" HorizontalAlignment="Left" Margin="323,10,0,0" VerticalAlignment="Top" Width="155"/>
+                    <Button Click="Help_AddFilm_Click" Content="Додавання фільму" HorizontalAlignment="Left" Margin="323,35,0,0" VerticalAlignment="Top" Width="155"/>
+                    <Button Click="Help_UpdateFilm_Click" Content="Редагування фільму" HorizontalAlignment="Left" Margin="323,60,0,0" VerticalAlignment="Top" Width="155"/>
+                    <Button Click="Help_DeleteFilm_Click" Content="Видалення фільму" HorizontalAlignment="Left" Margin="323,85,0,0" VerticalAlignment="Top" Width="155"/>
+                    <Button Click="Help_LoadFromDB_Click" Content="Завантаження з БД" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="133"/>
+                    <Button Click="Help_SaveToDB_Click" Content="Збереження в БД" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="133"/>
+                    <Button Click="Help_AboutProgram_Click" Content="Про програму" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="133"/>
+                    <Button Click="Help_Search_Click" Content="Пошук" HorizontalAlignment="Left" Margin="504,10,0,0" VerticalAlignment="Top" Width="155"/>
+                    <Button Click="Help_Filter_Click" Content="Фільтрація" HorizontalAlignment="Left" Margin="504,35,0,0" VerticalAlignment="Top" Width="155"/>
+                    <Button Click="Help_Sort_Click" Content="Сортування" HorizontalAlignment="Left" Margin="504,60,0,0" VerticalAlignment="Top" Width="155"/>
+                    <Button Click="Help_AdditionalFeatures_Click" Content="Додатковий функціонал" HorizontalAlignment="Left" Margin="691,10,0,0" VerticalAlignment="Top" Width="155"/>
                 </Grid>
             </TabItem>
 
@@ -241,6 +252,22 @@
 
             <TabItem Header="Додатковий функціонал">
                 <Grid Background="#FFE5E5E5">
+                    <Button Content="Улюблений жанр користувача" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="321" Click="FavoriteGenreByUserID_Click"/>
+                    <Button Content="Випадковий непереглянутий користувачем фільм" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="321" Click="RandomNotViewedFilmByUserID_Click"/>
+                    <Button Content="Топ-3 найпереглядуваніші фільми в відеотеці" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="321" Click="Top3MostWatchedFilmsInLibrary_Click"/>
+                    <Button Content="Середній термін повернення фільмів користувачем" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="321" Click="AverageFilmReturningTimeByUserID_Click"/>
+                    <Button Content="Запропонувати перелік снеків до фільму" HorizontalAlignment="Left" Margin="10,135,0,0" VerticalAlignment="Top" Width="321" Click="OfferListOfSnacksByFilmID_Click"/>
+                    <Button Content="Список переглянутих користувачем фільмів" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Width="322" Click="AllWatchedFilmsByUserID"/>
+
+
+                    <Label Content="ID користувача:" HorizontalAlignment="Left" Margin="447,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="featuresUserID" HorizontalAlignment="Left" Margin="548,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+                    <Label Content="ID фільму:" HorizontalAlignment="Left" Margin="478,41,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="featuresFilmID" HorizontalAlignment="Left" Margin="548,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+
+
 
                 </Grid>
             </TabItem>
@@ -248,7 +275,7 @@
         </TabControl>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,367,0,0">
-            <TextBlock x:Name="outputTextBlock" TextWrapping="Wrap" Margin="10, 0"><Run Text="тут "/><Run Language="uk-ua" Text="буде вивід хуйні"/></TextBlock>
+            <TextBlock x:Name="outputTextBlock" TextWrapping="Wrap" Margin="10, 0" Text=""/>
         </ScrollViewer>
 
 

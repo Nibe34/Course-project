@@ -74,6 +74,14 @@ namespace Video_library_owner_handbook
 
 
 
+        public List<Record> GetRecords() 
+        { 
+            return records;
+        }
+
+
+
+
 
         public string ToStringForFile()
         {
