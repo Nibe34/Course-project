@@ -225,18 +225,36 @@ namespace Video_library_owner_handbook
                         return;
                     }
 
+                    if (string.IsNullOrWhiteSpace(CRUD_releaseYear.Text) ||
+                        int.Parse(CRUD_releaseYear.Text) < 1900)
+                    {
+                        MessageBox.Show("Рік виходу фільму повинен бути не менше 1900.", "Помилка");
+                    }
+
+                    if (string.IsNullOrWhiteSpace(CRUD_cassetteYear.Text) ||
+                        int.Parse(CRUD_cassetteYear.Text) < 1900)
+                    {
+                        MessageBox.Show("Рік виходу касети повинен бути не менше 1900.", "Помилка");
+                    }
+
+                    if (string.IsNullOrWhiteSpace(CRUD_cassetteSerialNumber.Text) ||
+                        int.Parse(CRUD_cassetteSerialNumber.Text) < 0)
+                    {
+                        MessageBox.Show("Серійний номер касети повинен бути не менше 0.", "Помилка");
+                    }
+
                     VideoFilmOnCassette videoFilmOnCassette = new VideoFilmOnCassette(
                         VideoFilmLibrary.FindMinUnusedFilmID(),
                         true,
                         CRUD_title.Text,
                         CRUD_studio.Text,
-                        CRUD_genre.SelectedItem.ToString(),
+                        (CRUD_genre.SelectedItem as ComboBoxItem)?.Content?.ToString(),
                         int.Parse(CRUD_releaseYear.Text),
                         CRUD_director.Text,
                         CRUD_actors.Text,
                         CRUD_summary.Text,
                         ratingValue,
-                        CRUD_cassetteType.SelectedItem.ToString(),
+                        (CRUD_cassetteType.SelectedItem as ComboBoxItem)?.Content?.ToString(),
                         int.Parse(CRUD_cassetteYear.Text),
                         int.Parse(CRUD_cassetteSerialNumber.Text));
 
@@ -263,18 +281,27 @@ namespace Video_library_owner_handbook
                         return;
                     }
 
+                    if (string.IsNullOrWhiteSpace(CRUD_releaseYear.Text) ||
+                        int.Parse(CRUD_releaseYear.Text) < 1900)
+                    {
+                        MessageBox.Show("Рік виходу фільму повинен бути не менше 1900.", "Помилка");
+                    }
+
+
                     VideoFilmOnDisc videoFilmOnDisc = new VideoFilmOnDisc(
                         VideoFilmLibrary.FindMinUnusedFilmID(),
                         true,
                         CRUD_title.Text,
                         CRUD_studio.Text,
-                        CRUD_genre.SelectedItem.ToString(),
+                        (CRUD_genre.SelectedItem as ComboBoxItem)?.Content?.ToString(),
                         int.Parse(CRUD_releaseYear.Text),
                         CRUD_director.Text,
                         CRUD_actors.Text,
                         CRUD_summary.Text,
                         ratingValue,
-                        CRUD_discType.SelectedItem.ToString());
+                        (CRUD_discType.SelectedItem as ComboBoxItem)?.Content?.ToString());
+
+                    VideoFilmLibrary.AddFilm(videoFilmOnDisc);
                 }
                 PrintMessage("Фільм успішно додано до відеотеки\n\n");
             }
@@ -341,6 +368,24 @@ namespace Video_library_owner_handbook
                     return;
                 }
 
+                if (string.IsNullOrWhiteSpace(CRUD_releaseYear.Text) ||
+                        int.Parse(CRUD_releaseYear.Text) < 1900)
+                {
+                    MessageBox.Show("Рік виходу фільму повинен бути не менше 1900.", "Помилка");
+                }
+
+                if (string.IsNullOrWhiteSpace(CRUD_cassetteYear.Text) ||
+                    int.Parse(CRUD_cassetteYear.Text) < 1900)
+                {
+                    MessageBox.Show("Рік виходу касети повинен бути не менше 1900.", "Помилка");
+                }
+
+                if (string.IsNullOrWhiteSpace(CRUD_cassetteSerialNumber.Text) ||
+                    int.Parse(CRUD_cassetteSerialNumber.Text) < 0)
+                {
+                    MessageBox.Show("Серійний номер касети повинен бути не менше 0.", "Помилка");
+                }
+
                 string removalResult = VideoFilmLibrary.RemoveFilmById(filmId);
 
                 PrintMessage(removalResult);
@@ -354,13 +399,13 @@ namespace Video_library_owner_handbook
                             true,
                             CRUD_title.Text,
                             CRUD_studio.Text,
-                            CRUD_genre.Text,
+                            (CRUD_genre.SelectedItem as ComboBoxItem)?.Content?.ToString(),
                             int.Parse(CRUD_releaseYear.Text),
                             CRUD_director.Text,
                             CRUD_actors.Text,
                             CRUD_summary.Text,
                             ratingValue,
-                            CRUD_cassetteType.Text,
+                            (CRUD_cassetteType.SelectedItem as ComboBoxItem)?.Content?.ToString(),
                             int.Parse(CRUD_cassetteYear.Text),
                             int.Parse(CRUD_cassetteSerialNumber.Text));
 
@@ -373,13 +418,13 @@ namespace Video_library_owner_handbook
                             true,
                             CRUD_title.Text,
                             CRUD_studio.Text,
-                            CRUD_genre.Text,
+                            (CRUD_genre.SelectedItem as ComboBoxItem)?.Content?.ToString(),
                             int.Parse(CRUD_releaseYear.Text),
                             CRUD_director.Text,
                             CRUD_actors.Text,
                             CRUD_summary.Text,
                             ratingValue,
-                            CRUD_discType.Text);
+                            (CRUD_discType.SelectedItem as ComboBoxItem)?.Content?.ToString());
 
                         VideoFilmLibrary.AddFilm(videoFilmOnDisc);
                     }
@@ -469,7 +514,7 @@ namespace Video_library_owner_handbook
                     .Where(film => film.Genre == (Genres)Enum.Parse(typeof(Genres), ((ComboBoxItem)genreFilter.SelectedItem).Content.ToString()))
                     .ToList();
             }
-
+            
             if (mediaTypeFilter.SelectedIndex == 1)
             {
                 List<VideoFilmOnCassette> cassetteVideoFilms = filteredFilms
@@ -872,11 +917,11 @@ namespace Video_library_owner_handbook
 
                 if (randomFilm is VideoFilmOnCassette videoFilmOnCassette)
                 {
-                    PrintMessage($"Випадковий фільм для користувача із ID {userId}: {videoFilmOnCassette.ToStringForWrite()}");
+                    PrintMessage($"Випадковий фільм для користувача із ID {userId}: \n{videoFilmOnCassette.ToStringForWrite()}");
                 }
                 else if (randomFilm is VideoFilmOnDisc videoFilmOnDisc)
                 {
-                    PrintMessage($"Випадковий фільм для користувача із ID {userId}: {videoFilmOnDisc.ToStringForWrite()}");
+                    PrintMessage($"Випадковий фільм для користувача із ID {userId}: \n{videoFilmOnDisc.ToStringForWrite()}");
                 }
             }
             catch (Exception ex)

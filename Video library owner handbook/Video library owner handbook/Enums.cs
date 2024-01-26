@@ -30,7 +30,7 @@ namespace Video_library_owner_handbook
     {
         CD,
         DVD,
-        BleRay,
+        BlueRay,
         VCD
     }
 
