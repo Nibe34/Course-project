@@ -71,8 +71,6 @@ namespace Video_library_owner_handbook
 
 
 
-
-
         // посібник користувача
         private void Help_AboutProgram_Click(object sender, RoutedEventArgs e)
         {
@@ -179,9 +177,6 @@ namespace Video_library_owner_handbook
 
 
 
-
-
-
         // CRUD
         private void WriteAllFilms_Click(object sender, RoutedEventArgs e)
         {
@@ -229,18 +224,21 @@ namespace Video_library_owner_handbook
                         int.Parse(CRUD_releaseYear.Text) < 1900)
                     {
                         MessageBox.Show("Рік виходу фільму повинен бути не менше 1900.", "Помилка");
+                        return;
                     }
 
                     if (string.IsNullOrWhiteSpace(CRUD_cassetteYear.Text) ||
                         int.Parse(CRUD_cassetteYear.Text) < 1900)
                     {
                         MessageBox.Show("Рік виходу касети повинен бути не менше 1900.", "Помилка");
+                        return;
                     }
 
                     if (string.IsNullOrWhiteSpace(CRUD_cassetteSerialNumber.Text) ||
                         int.Parse(CRUD_cassetteSerialNumber.Text) < 0)
                     {
                         MessageBox.Show("Серійний номер касети повинен бути не менше 0.", "Помилка");
+                        return;
                     }
 
                     VideoFilmOnCassette videoFilmOnCassette = new VideoFilmOnCassette(
@@ -449,7 +447,6 @@ namespace Video_library_owner_handbook
 
 
 
-
         // пошук, сортування та фільтрація
         private void Search_Click(object sender, RoutedEventArgs e)
         {
@@ -620,8 +617,6 @@ namespace Video_library_owner_handbook
             }
 
         }
-
-
 
 
 
@@ -818,9 +813,6 @@ namespace Video_library_owner_handbook
                 MessageBox.Show($"Сталася помилка: {ex.Message}", "Помилка");
             }
         }
-
-
-
 
 
 
@@ -1225,12 +1217,6 @@ namespace Video_library_owner_handbook
 
             return snacksList;
         }
-
-
-
-
-
-
 
 
     }
