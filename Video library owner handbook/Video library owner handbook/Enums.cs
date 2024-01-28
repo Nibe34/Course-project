@@ -34,8 +34,4 @@ namespace Video_library_owner_handbook
         VCD
     }
 
-
-    internal class Enums
-    {
-    }
 }

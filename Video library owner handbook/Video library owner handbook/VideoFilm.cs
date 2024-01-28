@@ -111,27 +111,6 @@ namespace Video_library_owner_handbook
         }
 
 
-        public void SerializeToFile(string filePath)
-        {
-            
-        }
-
-
-
-
-
-
-        public string returnMessage(string message)
-        {
-            return message;
-        }
-
-
-
-
-
-
-
 
     }
 }

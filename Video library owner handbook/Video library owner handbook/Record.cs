@@ -56,25 +56,12 @@ namespace Video_library_owner_handbook
             this.wasReturned = wasReturned;
         }
 
-        public Record(int recordId, int videoFilmId, DateTime takingDate, DateTime returningDate)
-        {
-            this.recordId = recordId;
-            this.videoFilmId = videoFilmId;
-            this.takingDate = takingDate;
-            this.returningDate = returningDate;
-            this.wasReturned = false;
-        }
 
         ~Record()
         {
             Console.WriteLine("Деструктор для класу \"Record\" було викликано.");
         }
 
-
-
-
-
-        
 
 
         public string ToStringForFile()

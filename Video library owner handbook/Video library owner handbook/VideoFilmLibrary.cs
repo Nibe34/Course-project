@@ -41,10 +41,6 @@ namespace Video_library_owner_handbook
         {
             VideoFilmLibrary.videoFilms.Add(videoFilm);
         }
-        public static void AddFilms(List<VideoFilm> list)
-        {
-            VideoFilmLibrary.videoFilms.AddRange(list);
-        }
 
         public static void AddUserCard(UserCard userCard)
         {
@@ -130,10 +126,6 @@ namespace Video_library_owner_handbook
         {
             return userCards.FirstOrDefault(userCard => userCard.Id == userId);
         }
-
-
-
-
 
 
     }
