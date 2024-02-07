@@ -28,6 +28,12 @@ namespace Video_library_owner_handbook
                     File.AppendAllText("FilmsOnDisc.txt", videoFilm.ToStringForFile() + Environment.NewLine);
                 }
             }
+
+            string[] lines = File.ReadAllLines("StaticID.txt");
+            lines[0] = VideoFilmLibrary.NextFilmID.ToString();
+            File.WriteAllLines("StaticID.txt", lines);
+
+
         }
 
 
@@ -77,6 +83,12 @@ namespace Video_library_owner_handbook
                                                            elements[10]);
                 VideoFilmLibrary.AddFilm(film);
             }
+
+            string[] ID = File.ReadAllLines("StaticID.txt");
+            VideoFilmLibrary.NextFilmID = int.Parse(ID[0]);
+
+
+
         }
 
 
@@ -91,6 +103,10 @@ namespace Video_library_owner_handbook
             {
                 File.AppendAllText("UserCards.txt", userCard.ToStringForFile() + Environment.NewLine);
             }
+
+            string[] lines = File.ReadAllLines("StaticID.txt");
+            lines[1] = VideoFilmLibrary.NextUserID.ToString();
+            File.WriteAllLines("StaticID.txt", lines);
         }
 
 
@@ -119,6 +135,12 @@ namespace Video_library_owner_handbook
 
                 VideoFilmLibrary.AddUserCard(userCard);
             }
+
+
+
+
+            string[] ID = File.ReadAllLines("StaticID.txt");
+            VideoFilmLibrary.NextUserID = int.Parse(ID[1]);
         }
     }
 }

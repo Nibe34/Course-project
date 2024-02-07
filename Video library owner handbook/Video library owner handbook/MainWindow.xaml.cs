@@ -24,7 +24,7 @@ namespace Video_library_owner_handbook
         {
             InitializeComponent();
 
-            InitialSettings();
+            Loaded += MainWindow_Loaded;
 
 
             mediaTypeFilter.SelectedIndex = 0;
@@ -39,7 +39,7 @@ namespace Video_library_owner_handbook
         }
 
         // початкові налаштування (завантаження даних)
-        private static void InitialSettings()
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             FileManager.ReadFilmsFromFile();
             FileManager.ReadUserCardsFromFile();
@@ -242,7 +242,7 @@ namespace Video_library_owner_handbook
                     }
 
                     VideoFilmOnCassette videoFilmOnCassette = new VideoFilmOnCassette(
-                        VideoFilmLibrary.FindMinUnusedFilmID(),
+                        VideoFilmLibrary.GetNextFilmID(),
                         true,
                         CRUD_title.Text,
                         CRUD_studio.Text,
@@ -287,7 +287,7 @@ namespace Video_library_owner_handbook
 
 
                     VideoFilmOnDisc videoFilmOnDisc = new VideoFilmOnDisc(
-                        VideoFilmLibrary.FindMinUnusedFilmID(),
+                        VideoFilmLibrary.GetNextFilmID(),
                         true,
                         CRUD_title.Text,
                         CRUD_studio.Text,
@@ -636,7 +636,7 @@ namespace Video_library_owner_handbook
 
         private void AddNewClient_Click(object sender, RoutedEventArgs e)
         {
-            VideoFilmLibrary.AddUserCard(new UserCard(VideoFilmLibrary.FindMinUnusedUserID(), addClientName.Text));
+            VideoFilmLibrary.AddUserCard(new UserCard(VideoFilmLibrary.GetNextUserID(), addClientName.Text));
             PrintMessage("Клієнта успішно додано.");
         }
 

@@ -12,6 +12,22 @@ namespace Video_library_owner_handbook
         private static List<VideoFilm> videoFilms = new List<VideoFilm>();
         private static List<UserCard> userCards = new List<UserCard>();
 
+        private static int nextFilmID;
+        private static int nextUserID;
+
+
+        public static int NextFilmID
+        {
+            get { return nextFilmID; }
+            set { nextFilmID = value; }
+        }
+
+        public static int NextUserID
+        {
+            get { return nextUserID; }
+            set { nextUserID = value; }
+        }
+
 
         public VideoFilmLibrary()
         {
@@ -48,39 +64,15 @@ namespace Video_library_owner_handbook
         }
 
 
-        public static int FindMinUnusedUserID()
+        public static int GetNextUserID()
         {
-            if (VideoFilmLibrary.userCards.Count == 0)
-                return 1;
-
-            List<int> sortedIds = VideoFilmLibrary.userCards
-                .OrderBy(obj => obj.Id)
-                .Select(obj => obj.Id)
-                .ToList();
-
-            for (int i = 1; i < sortedIds.Max(); i++)
-                if (!sortedIds.Contains(i))
-                    return i;
-
-            return sortedIds.Max() + 1;
+            return nextUserID++;
         }
 
         
-        public static int FindMinUnusedFilmID()
+        public static int GetNextFilmID()
         {
-            if (VideoFilmLibrary.videoFilms.Count == 0) 
-                return 1;
-
-            List<int> sortedIds = VideoFilmLibrary.videoFilms
-                .OrderBy(obj => obj.Id)
-                .Select(obj => obj.Id)
-                .ToList();
-
-            for (int i = 1;  i < sortedIds.Max(); i++) 
-                if (!sortedIds.Contains(i)) 
-                    return i;
-
-            return sortedIds.Max() + 1;
+            return nextFilmID++;
         }
 
 
